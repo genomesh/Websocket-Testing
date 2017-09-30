@@ -1,0 +1,10 @@
+div#gameArea {
+    width: 800px;
+    height: 500px;
+    background: #000;
+    padding: 5px;
+    margin: 50px auto;
+}
+div#gameArea > canvas {
+    float: left;
+}
