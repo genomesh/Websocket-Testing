@@ -5,7 +5,7 @@ function init() {
     squares = [];
     sxy = [];
     squareSize = 25;
-    socket.io.connect('http://localhost:3000');
+    socket.io.connect('http://ws.genomesh.com');
     socket.on('update', function(msg) {
         sxy = [];
         r = JSON.parse(msg);
