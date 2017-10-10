@@ -1,16 +1,19 @@
-var canvas, ctx, socket, bSqu, keysDown, queue, otherSquares, found, squares, sxy, r, squareSize;
+var canvas, ctx, socket, bSqu, keysDown, queue, otherSquares, found, squares, sxy, sid, r, squareSize;
 
 function init() {
     socket = io();
     squares = [];
     sxy = [];
+    sid = [];
     squareSize = 25;
     socket.io.connect('http://ws.genomesh.com');
     socket.on('update', function(msg) {
         sxy = [];
+        sid = [];
         r = JSON.parse(msg);
         for (let x = 0; x<r.length; x++) {
-            if (typeof r[x].pos == 'string') {sxy.push(JSON.parse(r[x].pos))};
+            if (typeof r[x].pos == 'string') {sxy.push(JSON.parse(r[x].pos));
+                                             sid.push(r[x].id)};
         }
     });
     canvas = document.createElement('canvas');

@@ -31,9 +31,6 @@ function newConnection(socket) {
                 squares[i].pos = msg;
             }
         }
-        //console.log('Update: ' + socket.pos);
-        //io.emit('update', JSON.stringify([socket.id, msg]))
-        io.emit('update', JSON.stringify(squares));
     });
     socket.on('disconnect', function() {
         console.log('User DC: ' + socket.id);
@@ -46,7 +43,15 @@ function newConnection(socket) {
     })
 }
 
+function sendSquares () {
+    if (squares.length > 0) {
+        io.emit('update',JSON.stringify(squares));
+    }
+}
+
 function Squ (id) {
     this.pos = [5,5];
     this.id = id;
 }
+
+setInterval(sendSquares,25);
